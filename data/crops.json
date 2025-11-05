@@ -1,0 +1,54 @@
+{
+  "wheat": {
+    "names": {"en": "Wheat", "hi": "गेहूं"},
+    "best_soils": ["loamy", "clay"],
+    "water_need": "medium",
+    "season": ["rabi"],
+    "profit_index": 8,
+    "heat_risk": "medium",
+    "seed_cost_per_acre": 1200,
+    "expected_yield_kg_per_acre": 2500,
+    "assumed_price_per_kg": 24,
+    "notes_en": "Stable MSP; winter crop",
+    "notes_hi": "स्थिर MSP; रबी फसल"
+  },
+  "rice": {
+    "names": {"en": "Rice", "hi": "चावल"},
+    "best_soils": ["clay", "alluvial"],
+    "water_need": "high",
+    "season": ["kharif"],
+    "profit_index": 7,
+    "heat_risk": "medium",
+    "seed_cost_per_acre": 1500,
+    "expected_yield_kg_per_acre": 3000,
+    "assumed_price_per_kg": 22,
+    "notes_en": "High water; good yield crop",
+    "notes_hi": "अधिक पानी; अच्छी पैदावार फसल"
+  },
+  "mustard": {
+    "names": {"en": "Mustard", "hi": "सरसों"},
+    "best_soils": ["loamy", "sandy"],
+    "water_need": "low",
+    "season": ["rabi"],
+    "profit_index": 7,
+    "heat_risk": "low",
+    "seed_cost_per_acre": 800,
+    "expected_yield_kg_per_acre": 1000,
+    "assumed_price_per_kg": 50,
+    "notes_en": "Low water; good oilseed option",
+    "notes_hi": "कम पानी; अच्छा तिलहन विकल्प"
+  },
+  "maize": {
+    "names": {"en": "Maize", "hi": "मक्का"},
+    "best_soils": ["loamy", "alluvial"],
+    "water_need": "medium",
+    "season": ["kharif"],
+    "profit_index": 8,
+    "heat_risk": "medium",
+    "seed_cost_per_acre": 1000,
+    "expected_yield_kg_per_acre": 2200,
+    "assumed_price_per_kg": 20,
+    "notes_en": "Good returns; adaptable crop",
+    "notes_hi": "अच्छा लाभ; अनुकूल फसल"
+  }
+}

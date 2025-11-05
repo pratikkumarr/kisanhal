@@ -1,0 +1,16 @@
+{
+  "name": "kisaanhal-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.0",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "node-fetch": "^3.3.2"
+  }
+}

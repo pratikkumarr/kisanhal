@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>KisaanHal – Smart Farming AI</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+  <meta name="theme-color" content="#0b1725" />
+</head>
+
+<body>
+  <!-- Floating gradient field background -->
+  <div class="bg">
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="grid"></div>
+  </div>
+
+  <!-- Top navbar -->
+  <header class="nav glass">
+    <div class="brand">
+      <div class="logo">
+        <span class="leaf">🌿</span>
+      </div>
+      <div class="title">
+        <strong>KisaanHal</strong>
+        <span class="subtitle" data-i18n="tagline">Smart Farming AI</span>
+      </div>
+    </div>
+
+    <nav class="nav-links">
+      <button class="nav-link active" data-section="soil" data-i18n="nav.soil">Soil Advisor</button>
+      <button class="nav-link" data-section="leaf" data-i18n="nav.leaf">Leaf Scanner</button>
+      <button class="nav-link" data-section="compare" data-i18n="nav.compare">Crop Comparison</button>
+    </nav>
+
+    <div class="controls">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button class="pill selected" data-lang="en">EN</button>
+        <button class="pill" data-lang="hi">HI</button>
+      </div>
+      <a class="cta" href="#" id="demoBtn" data-i18n="btn.demo">Live Demo</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>
+        <span data-i18n="hero.h1a">AI + IoT for</span>
+        <span class="gradient-txt" data-i18n="hero.h1b">Smarter Farming</span>
+      </h1>
+      <p class="muted" data-i18n="hero.sub">
+        Soil insights, leaf disease diagnosis, irrigation and fertilizer guidance — in English and Hindi.
+      </p>
+      <div class="hero-actions">
+        <button class="button primary glow" data-scroll="leaf" data-i18n="hero.tryLeaf">Try Leaf Scanner</button>
+        <button class="button outline" data-scroll="compare" data-i18n="hero.compare">Compare Crops</button>
+      </div>
+      <div class="hero-badges">
+        <span class="badge">Gemini 2.5 Flash</span>
+        <span class="badge" data-i18n="badge.offline">Offline-ready UI</span>
+        <span class="badge" data-i18n="badge.bilingual">Bilingual</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-card glass motion-blur">
+        <div class="mini-stats">
+          <div><span>pH</span><strong id="miniPh">6.8</strong></div>
+          <div><span>N</span><strong id="miniN">34</strong></div>
+          <div><span>P</span><strong id="miniP">21</strong></div>
+          <div><span>K</span><strong id="miniK">29</strong></div>
+        </div>
+        <div class="pulse"></div>
+      </div>
+      <div class="floating-card glass">
+        <div class="leaf-chip">🌱</div>
+        <div class="leaf-chip">🍃</div>
+        <div class="leaf-chip">🌿</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main app -->
+  <main class="container">
+
+    <!-- Soil Advisor -->
+    <section id="section-soil" class="pane glass active">
+      <div class="pane-head">
+        <h2 data-i18n="soil.title">Soil Advisor</h2>
+        <p class="muted" data-i18n="soil.desc">
+          Enter soil parameters to get crop & fertilizer suggestions.
+        </p>
+      </div>
+
+      <form id="soilForm" class="form-grid">
+        <div class="field">
+          <label for="ph" data-i18n="soil.ph">Soil pH</label>
+          <input id="ph" type="number" step="0.1" min="0" max="14" placeholder="6.5" />
+        </div>
+        <div class="field">
+          <label for="nitrogen" data-i18n="soil.n">Nitrogen (N)</label>
+          <input id="nitrogen" type="number" min="0" placeholder="40" />
+        </div>
+        <div class="field">
+          <label for="phosphorus" data-i18n="soil.p">Phosphorus (P)</label>
+          <input id="phosphorus" type="number" min="0" placeholder="25" />
+        </div>
+        <div class="field">
+          <label for="potassium" data-i18n="soil.k">Potassium (K)</label>
+          <input id="potassium" type="number" min="0" placeholder="30" />
+        </div>
+        <div class="field">
+          <label for="moisture" data-i18n="soil.moisture">Moisture %</label>
+          <input id="moisture" type="number" min="0" max="100" placeholder="42" />
+        </div>
+        <div class="field">
+          <label for="soilType" data-i18n="soil.type">Soil Type</label>
+          <select id="soilType">
+            <option value="loam">Loam</option>
+            <option value="clay">Clay</option>
+            <option value="sandy">Sandy</option>
+            <option value="silty">Silty</option>
+            <option value="peaty">Peaty</option>
+            <option value="chalky">Chalky</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="button primary glow" data-i18n="soil.analyze">Analyze Soil</button>
+          <button type="reset" class="button ghost" data-i18n="common.reset">Reset</button>
+        </div>
+      </form>
+
+      <div id="soilOutput" class="output-grid hidden">
+        <div class="card">
+          <h3 data-i18n="soil.suggested">Suggested Crops</h3>
+          <ul id="cropList" class="list"></ul>
+        </div>
+        <div class="card">
+          <h3 data-i18n="soil.fert">Fertilizer Plan</h3>
+          <div id="fertPlan" class="text"></div>
+        </div>
+        <div class="card">
+          <h3 data-i18n="soil.irrig">Irrigation Advice</h3>
+          <div id="irrigationPlan" class="text"></div>
+        </div>
+      </div>
+      <!-- AI Farmer Friendly Summary -->
+<div id="soilAiBox" class="card hidden" style="margin-top:14px;">
+  <h3>🧠 AI Advice</h3>
+  <p id="soilAiText" class="text"></p>
+</div>
+
+    </section>
+
+    <!-- Leaf Disease Scanner -->
+    <section id="section-leaf" class="pane glass">
+      <div class="pane-head">
+        <h2 data-i18n="leaf.title">Leaf Disease Scanner</h2>
+        <p class="muted" data-i18n="leaf.desc">
+          Upload a leaf image. We’ll diagnose using Gemini 2.5 Flash and suggest remedies.
+        </p>
+      </div>
+
+      <div class="uploader" id="uploader">
+        <input type="file" id="leafInput" accept="image/*" hidden />
+        <div class="drop" id="dropZone">
+          <div class="upload-anim" aria-hidden="true">
+            <div class="ring"></div>
+            <div class="leaf-icon">🍃</div>
+          </div>
+          <p class="muted" data-i18n="leaf.hint">Drag & drop or click to upload</p>
+          <div class="row">
+            <select id="cropSelect" class="mini-select" aria-label="Crop">
+              <option value="">(Auto)</option>
+              <option>Wheat</option>
+              <option>Rice</option>
+              <option>Tomato</option>
+              <option>Potato</option>
+              <option>Cotton</option>
+              <option>Maize</option>
+              <option>Soybean</option>
+            </select>
+            <button id="scanBtn" class="button primary glow" disabled data-i18n="leaf.scan">Scan Leaf</button>
+          </div>
+        </div>
+
+        <div class="preview hidden" id="preview">
+          <img id="previewImg" alt="Leaf preview" />
+          <button class="button ghost" id="changeImg" data-i18n="leaf.change">Change Image</button>
+        </div>
+      </div>
+
+      <div id="leafResult" class="output-grid hidden">
+        <div class="card">
+          <h3 data-i18n="leaf.diagnosis">Diagnosis</h3>
+          <div class="kv"><span data-i18n="leaf.disease">Disease</span><strong id="resDisease">—</strong></div>
+          <div class="kv"><span data-i18n="leaf.conf">Confidence</span><strong id="resConf">—</strong></div>
+          <div class="kv"><span data-i18n="leaf.symptoms">Symptoms</span><ul id="resSymptoms" class="list"></ul></div>
+        </div>
+        <div class="card">
+          <h3 data-i18n="leaf.organic">Organic Solution</h3>
+          <p id="resOrganic" class="text">—</p>
+          <h3 data-i18n="leaf.chemical" class="mt16">Chemical Solution</h3>
+          <p id="resChemical" class="text">—</p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="leaf.schedule">Schedule</h3>
+          <p id="resSchedule" class="text">—</p>
+          <h3 data-i18n="leaf.warning" class="mt16">Warning</h3>
+          <p id="resWarning" class="text">—</p>
+        </div>
+      </div>
+
+      <div id="leafLoader" class="loader hidden">
+        <div class="spinner"></div>
+        <p class="muted" data-i18n="leaf.loading">Analyzing image…</p>
+      </div>
+    </section>
+
+    <!-- Crop Comparison -->
+    <section id="section-compare" class="pane glass">
+      <div class="pane-head">
+        <h2 data-i18n="compare.title">Crop Comparison</h2>
+        <p class="muted" data-i18n="compare.desc">
+          Compare two crops for season, irrigation, fertilizer, and soil preferences.
+        </p>
+      </div>
+
+      <div class="compare-grid">
+        <div class="card">
+          <label class="muted" for="cropA" data-i18n="compare.cropA">Crop A</label>
+          <select id="cropA" class="big-select"></select>
+        </div>
+        <div class="card">
+          <label class="muted" for="cropB" data-i18n="compare.cropB">Crop B</label>
+          <select id="cropB" class="big-select"></select>
+        </div>
+      </div>
+
+      <div id="compareOutput" class="output-grid hidden">
+        <div class="card">
+          <h3 data-i18n="compare.overview">Overview</h3>
+          <div id="cmpOverview" class="text"></div>
+        </div>
+        <div class="card">
+          <h3 data-i18n="compare.irrig">Irrigation</h3>
+          <div id="cmpIrrigation" class="text"></div>
+        </div>
+        <div class="card">
+          <h3 data-i18n="compare.fert">Fertilizer</h3>
+          <div id="cmpFertilizer" class="text"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© Innotech’25 • KisaanHal</span>
+    <span class="muted">Built with Gemini 2.5 Flash</span>
+  </footer>
+
+  <script src="./script.js" type="module"></script>
+</body>
+</html>
